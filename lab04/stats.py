@@ -1,7 +1,9 @@
 def parse_record(line: str) -> dict:
     parts = line.split(";")
     if len(parts) != 3:
-        raise ValueError("ожидалось 3 поля, получено {}: '{}'".format(len(parts), line))
+        raise ValueError(
+            "ожидалось 3 поля, получено {}: '{}'".format(len(parts), line)
+        )
 
     city = parts[0].strip()
     temp_str = parts[1].strip()
@@ -13,11 +15,13 @@ def parse_record(line: str) -> dict:
         raise ValueError("пустая дата: '" + line + "'")
 
     try:
-        temp = float(temp_str)
+        temperature = float(temp_str)
     except ValueError:
-        raise ValueError("температура не число: '" + temp_str + "' в строке '" + line + "'")
+        raise ValueError(
+            "температура не число: '" + temp_str + "' в строке '" + line + "'"
+        )
 
-    return {"city": city, "temp": temp, "date": date}
+    return {"city": city, "temperature": temperature, "date": date}
 
 
 def read_valid(lines: list) -> list:
@@ -43,13 +47,13 @@ def average_by_city(records: list) -> dict:
 
     for record in records:
         city = record["city"]
-        temp = record["temp"]
+        temperature = record["temperature"]
 
         if city not in sums:
             sums[city] = 0.0
             counts[city] = 0
 
-        sums[city] = sums[city] + temp
+        sums[city] = sums[city] + temperature
         counts[city] = counts[city] + 1
 
     averages = {}
