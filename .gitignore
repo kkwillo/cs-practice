@@ -1,0 +1,10 @@
+# Файлы PyCharm / JetBrains
+.idea/
+*.iml
+
+# Кэш Python
+pycache/
+*.pyc
+
+# Временные файлы
+test.txt
